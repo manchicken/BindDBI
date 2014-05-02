@@ -2,9 +2,11 @@ BindDBI
 =======
 
 NAME
+----
        BindDBI - Value binding wrapper for the DBI module
 
 SYNOPSIS
+--------
            use DBI;
            use DBI qw(:sql_types);
 
@@ -57,6 +59,8 @@ SYNOPSIS
            $db->finish();
 
 DESCRIPTION
+-----------
+
        This packages the wraps standard perl DBI module providing convientent data binding which
        speeds up SQL execution as well as providing better user entered data protection along
        with error trapping.  Each wrapping method is named the same as the DBI method it wraps.
@@ -90,9 +94,11 @@ DESCRIPTION
        * err_handler - Registers an error handler routine
 
 new( )
+------
        Creates a new BindDBI object.
 
 connectOracleStr($str)
+----------------------
        This method connects a BindDBI object to an Oracle database.
 
        Arguments:
@@ -100,6 +106,7 @@ connectOracleStr($str)
        * $str - Oracle connection string. Typically format is: {user}/{pass}@{inst}
 
 connect($instance, $username, $password)
+----------------------------------------
        This method connects a BindDBI object to an Oracle database.
 
        Arguments:
@@ -109,6 +116,7 @@ connect($instance, $username, $password)
        * $password - Database password
 
 prepare($id, $sql, %bind)
+-------------------------
        This method prepares an SQL statement to be processed after applying the supplied bindings
 
        Arguments:
@@ -140,9 +148,11 @@ prepare($id, $sql, %bind)
            %bind{MIN_ZIP} = \$min_zip;    # Value with minimum value of ZIP
 
 execute( )
+----------
        This method wraps and executes the Perl DBI::execute method.
 
 fetch( )
+--------
        This method wraps and executes the Perl DBI::fetch method.
 
        The values returned will be placed into the variables they were bound to.
@@ -151,21 +161,27 @@ finish( )
        This method wraps and executes the Perl DBI::finish method.
 
 commit( )
+---------
        This method wraps and executes the Perl DBI::commit method.
 
 rollback( )
+-----------
        This method wraps and executes the Perl DBI::rollback method.
 
 disconnect( )
+-------------
        This method wraps and executes the Perl DBI::disconnect method.
 
 err( )
+------
        This method calls the DBI::err method to return the error code.
 
 errstr( )
+---------
        This method calls the DBI::errstr method to return the error code.
 
 select_list(@columns)
+---------------------
        This method returns a bound string to use as the list in a SELECT statement.
 
        Arguments:
@@ -180,6 +196,7 @@ select_list(@columns)
        string returned will be modified in accordance with the registered format.
 
 select_list_alias($alias, @columns)
+-----------------------------------
        This method returns a bound string to use as the list in a SELECT statement.
 
        Arguments:
@@ -195,6 +212,7 @@ select_list_alias($alias, @columns)
        string returned will be modified in accordance with the registered format.
 
 where_list(@columns)
+--------------------
        This method returns a bound string to use as a WHERE clause
 
        Arguments:
@@ -209,6 +227,7 @@ where_list(@columns)
        string returned will be modified in accordance with the registered format.
 
 where_list_alias($alias, @columns)
+----------------------------------
        This method returns a bound string to use as a WHERE clause.
 
        Arguments:
@@ -224,6 +243,7 @@ where_list_alias($alias, @columns)
        string returned will be modified in accordance with the registered format.
 
 values_list(@columns)
+---------------------
        This method returns a bound string to use as the list in values clause of an INSERT state-
        ment.
 
@@ -239,6 +259,7 @@ values_list(@columns)
        string returned will be modified in accordance with the registered format.
 
 update_list(@columns)
+---------------------
        This method returns a bound string to use as the list in UPDATE statement.
 
        Arguments:
@@ -253,6 +274,7 @@ update_list(@columns)
        string returned will be modified in accordance with the registered format.
 
 record($table, @columns)
+------------------------
        This method returns a record hash of the column names passed.
 
        Arguments:
@@ -267,6 +289,7 @@ record($table, @columns)
            2) $table ne "":   "table.column" => ""
 
 binding(%record)
+----------------
        This method returns a bound hash useable with the prepare method.
 
        Arguments:
@@ -278,6 +301,7 @@ binding(%record)
            COLUMN => ""
 
 col_type(%typing)
+-----------------
        This method registers data types that are naturally handled by DBI and Oracle for special
        handling with the BindDBI::*_list methods.
 
@@ -300,6 +324,7 @@ col_type(%typing)
            $db->col_type(SYS_CREATION_DATE => "SYSDATE(yyyymmddhh24miss)");
 
 sqlSafe($value)
+---------------
        This method returned an SQL safe string where backslashes and single quotes are escaped.
 
        Arguments:
@@ -307,6 +332,7 @@ sqlSafe($value)
        * $value - String to escape
 
 err_handler(\&routine)
+----------------------
        This method resgisters an error handling routine to be called whenever BindDBI or DBI
        encounters and error.
 
@@ -316,13 +342,16 @@ err_handler(\&routine)
        The default error handler is 'die'.
 
 DIAGNOSTICS
+-----------
            -- to do --
 
 DEPENDENCIES
+------------
            use DBI;
            use DBI qw(:sql_types);
 
 AUTHOR
+------
            Michael Stemle
            Amdocs Champaign
            mstemle@amdocs.com
